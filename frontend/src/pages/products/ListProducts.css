@@ -1,0 +1,156 @@
+/* Container */
+.products-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Toolbar */
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .toolbar h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #20232a;
+  }
+  
+  /* Empty message */
+  .empty-message {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  /* Table */
+  .products-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.95rem;
+  }
+  
+  .products-table th,
+  .products-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .products-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .products-table tr:hover {
+    background-color: #f5faff;
+  }
+  
+  /* Actions column */
+  .actions-col {
+    width: 180px;
+  }
+  
+  /* Buttons (reuse shared styles if available) */
+  .btn-primary {
+    background-color: #61dafb;
+    color: #20232a;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #4ec3e0;
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    background-color: #e5e5e5;
+    color: #333;
+    padding: 6px 12px;
+    margin-right: 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #d4d4d4;
+    transform: translateY(-2px);
+  }
+  
+  .btn-danger {
+    background-color: #ff4d4f;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #e64547;
+    transform: translateY(-2px);
+  }
+  
+  /* Search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-bar input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  flex: 1;
+}
+
+.search-bar input:focus {
+  border-color: #61dafb;
+  box-shadow: 0 0 4px rgba(97, 218, 251, 0.4);
+  outline: none;
+}
+
+/* Toolbar actions (Sort + Add Product) */
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.toolbar-actions .btn-secondary {
+  background: linear-gradient(135deg, #f1f1f1, #e0e0e0);
+  color: #333;
+  border: 1px solid #ccc;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.toolbar-actions .btn-secondary:hover {
+  background: linear-gradient(135deg, #eaeaea, #d5d5d5);
+  transform: translateY(-2px);
+}
