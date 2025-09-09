@@ -7,6 +7,8 @@ function ListProducts({ products = [], onDeleteProduct, onQueryProducts }) {
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState("desc");
   const [sortBy, setSortBy] = useState("createdAt");
+  const [showSortMenu, setShowSortMenu] = useState(false);
+
   const filteredProducts = useMemo(() => {
     if (!products || !products.length) return [];
     if (!search) return products;
@@ -34,15 +36,14 @@ function ListProducts({ products = [], onDeleteProduct, onQueryProducts }) {
     }
   };
 
-  const handleSearch = async (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    // Local filtering is handled by useMemo above
   };
 
-  const handleSortChange = async (e) => {
-    const selectedOrder = e.target.value;
+  const handleSortChange = async (selectedOrder) => {
     setOrder(selectedOrder);
-    setSortBy("price"); // always sort by price
+    setSortBy("price");
+    setShowSortMenu(false); // close menu
     if (onQueryProducts) {
       await onQueryProducts({ search, sortBy: "price", order: selectedOrder });
     }
@@ -59,18 +60,28 @@ function ListProducts({ products = [], onDeleteProduct, onQueryProducts }) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button type="submit" className="btn-secondary">Search</button>
         </form>
 
         <div className="toolbar-actions">
-          <select
-            value={order}
-            onChange={handleSortChange}
-            className="sort-dropdown"
-          >
-            <option value="asc">Sort by Price: Ascending</option>
-            <option value="desc">Sort by Price: Descending</option>
-          </select>
+          <div className="sort-dropdown-wrapper">
+            <button
+              type="button"
+              className="btn-secondary sort-btn"
+              onClick={() => setShowSortMenu((prev) => !prev)}
+            >
+              Sort by Price ▾
+            </button>
+            {showSortMenu && (
+              <div className="sort-menu">
+                <button onClick={() => handleSortChange("asc")}>
+                  Ascending
+                </button>
+                <button onClick={() => handleSortChange("desc")}>
+                  Descending
+                </button>
+              </div>
+            )}
+          </div>
 
           <Link to="/products/new" className="btn-primary">
             + Add Product
