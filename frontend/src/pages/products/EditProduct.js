@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { apiGet, apiPost, apiPut } from "../../services/api";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { apiPost, apiPut } from "../../services/api";
 import { toast } from "react-toastify";
 import "./EditProduct.css";
 
 function EditProduct({ categories = [], products = [], onCreate, onUpdate }) {
   const navigate = useNavigate();
   const { id } = useParams();
+  const location = useLocation();
   const isNew = id === "new" || !id;
   const [form, setForm] = useState({
     name: "",
@@ -21,25 +22,22 @@ function EditProduct({ categories = [], products = [], onCreate, onUpdate }) {
 
   useEffect(() => {
     if (!isNew) {
-      apiGet(`/api/products/${id}`)
-        .then((res) => {
-          const p = res?.data;
-          if (p) {
-            setForm({
-              name: p.name || "",
-              price: p.price ?? "",
-              description: p.description || "",
-              category: p.category || "",
-            });
-            toast.success("Loaded product");
-          }
-        })
-        .catch((err) => {
-          setError(err.message || "Failed to load product");
-          toast.error(err.message || "Failed to load product");
+      // Get product from location state or find in products list
+      const product = location.state?.product || products.find(p => p._id === id);
+      if (product) {
+        setForm({
+          name: product.name || "",
+          price: product.price ?? "",
+          description: product.description || "",
+          category: product.category || "",
         });
+        toast.success("Loaded product");
+      } else {
+        setError("Product not found");
+        toast.error("Product not found");
+      }
     }
-  }, [isNew, id]);
+  }, [isNew, id, location.state, products]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

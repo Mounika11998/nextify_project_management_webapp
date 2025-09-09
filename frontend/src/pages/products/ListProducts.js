@@ -113,6 +113,7 @@ function ListProducts({ products = [], onDeleteProduct, onQueryProducts }) {
                   <Link
                     to={`/products/${p._id}/edit`}
                     className="btn-secondary"
+                    state={{ product: p }}
                   >
                     Edit
                   </Link>

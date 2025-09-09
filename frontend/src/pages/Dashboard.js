@@ -4,17 +4,28 @@ import "./Dashboard.css";
 function Dashboard() {
   return (
     <div className="dashboard-container">
-      <div className="dashboard-card">
-        <h1 className="dashboard-title"> Dashboard</h1>
-        <p className="dashboard-subtitle">
-          Welcome to the <strong>Product Management</strong> application.
+      {/* Hero Section */}
+      <section className="hero-section">
+        <h1 className="main-title">Product Management</h1>
+        <h2 className="sub-title">Manage Products & Categories with Ease</h2>
+        <p className="description">
+          Welcome to the <strong>Product Management</strong> application.  
+          Organize, track, and manage your products and categories effortlessly.  
+          Future updates will bring analytics, assignments, and more!
         </p>
+      </section>
 
-        <ul className="dashboard-list">
-          <li> Manage products and categories</li>
-          <li> Create and edit entries</li>
-        </ul>
-      </div>
+      {/* Features Section */}
+      <section className="features-grid">
+        <div className="feature-card">
+          <h3>Products</h3>
+          <p>Add, edit, delete, and manage your products in one place.</p>
+        </div>
+        <div className="feature-card">
+          <h3>Categories</h3>
+          <p>Organize products into categories for better tracking.</p>
+        </div>
+      </section>
     </div>
   );
 }
